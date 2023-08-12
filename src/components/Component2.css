@@ -1,0 +1,15 @@
+.component2-wrapper {
+    display: flex;
+    justify-content: center;
+}
+.component2-wrapper p {
+    font-family: var(--secondary-font);
+    font-size: 1.25rem;
+    text-align: center;
+    width: 90%;
+    line-height: 1.75rem;
+    color: var(--primary);
+}
+.component2-wrapper p a:hover {
+    color: var(--tertiary);
+}

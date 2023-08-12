@@ -1,0 +1,21 @@
+.component3-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+.component3-wrapper h2 {
+    text-align: center;
+    margin: 0;
+    font-family: var(--primary-font);
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+.component3-wrapper p {
+    text-align: center;
+    font-family: var(--secondary-font);
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+.component3-wrapper p a:hover {
+    color: var(--tertiary);
+}

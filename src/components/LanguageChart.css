@@ -1,0 +1,40 @@
+.fade-in-text {
+  opacity: 0;
+  animation: fadeIn100 ease 2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn100 {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.total-div {
+    text-align: center;
+    font-size: 1.7rem;
+    color: var(--accent);
+    font-family: var(--mont);
+}
+
+.lines,
+.outer-text {
+    color: var(--dgreen);
+}
+
+.outer-text {
+    font-family: var(--sans);
+}
+
+.inner-upper {
+    font-size: 1.2rem;
+}
+
+.inner-lower,
+.lower {
+    font-size: .8rem;
+}
+
+text, 
+tspan {
+    font-family: var(--sans);
+}
