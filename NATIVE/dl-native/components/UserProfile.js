@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'; // Replaced Animated with Image
 import LanguageChart from './LanguageChart';
+import FrameworkAnalysis from './FrameworkAnalysis';
 
-const UserProfile = ({ userData, languageStats, navigation }) => {
+const UserProfile = ({ userData, languageStats, publicRepos, trimmedUsername, navigation }) => {
 
   const handleBack = () => {
     navigation.navigate('InitialScreen'); // Navigate to InitialScreen
@@ -20,17 +21,21 @@ const UserProfile = ({ userData, languageStats, navigation }) => {
         </View>
       </View>
       <Text style={styles.bio}>{userData.bio}</Text>
-      <View>
-        {/* Use userData and languageStats as needed */}
+      <View style={styles.publicReposContainer}>
+        <Text style={styles.publicRepos}>Public Repositories: {publicRepos}</Text>
+        <View style={styles.underline} />
         <LanguageChart languageStats={languageStats} />
-        {/* Other Components */}
       </View>
+      <FrameworkAnalysis trimmedUsername={trimmedUsername} />
     </View>
   );
 };
 
 
 const styles = StyleSheet.create({
+  publicReposContainer: {
+    alignItems: 'center',
+  },
   container: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -75,7 +80,20 @@ const styles = StyleSheet.create({
     marginTop: 0,
     textAlign: 'center',
     fontSize: 16,
-  }
+  },
+  publicRepos: {
+    color: '#e4e4e4',
+    textAlign: 'center',
+    fontSize: 24,
+    marginTop: 25,
+  },
+  underline: {
+    height: 1,
+    width: '70%',
+    backgroundColor: '#e4e4e4',
+    marginTop: 2,
+    marginBottom: 5,
+  },
 });
 
 export default UserProfile;

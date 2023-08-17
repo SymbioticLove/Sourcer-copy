@@ -3,11 +3,11 @@ import { ScrollView, Text, StyleSheet } from 'react-native';
 import UserProfile from './UserProfile';
 
 const DataDisplay = ({ route, navigation }) => {
-  const { userData, languageStats } = route.params;
+  const { userData, languageStats, publicRepos, trimmedUsername } = route.params;
 
   return (
     <ScrollView style={styles.container}>
-      <UserProfile userData={userData} languageStats={languageStats} navigation={navigation} />
+      <UserProfile userData={userData} languageStats={languageStats} publicRepos={publicRepos} trimmedUsername={trimmedUsername} navigation={navigation} />
       <Text style={styles.text}>{JSON.stringify({ userData, languageStats }, null, 2)}</Text>
     </ScrollView>
   );

@@ -28,11 +28,19 @@ const InitialScreen = ({ navigation }) => {
       });
       const userData = await response.json();
   
-      const reposResponse = await fetch(`https://api.github.com/users/${trimmedUsername}/repos`);
+      const reposResponse = await fetch(`https://api.github.com/users/${trimmedUsername}/repos`, {
+        headers: {
+          Authorization: `Bearer ${ GitHubToken }`,
+        },
+      });
       const repos = await reposResponse.json();
       const stats = {};
       for (const repo of repos) {
-        const languagesResponse = await fetch(repo.languages_url);
+        const languagesResponse = await fetch(repo.languages_url, {
+          headers: {
+            Authorization: `Bearer ${ GitHubToken }`,
+          },
+        });
         const languages = await languagesResponse.json();
         for (const [language, bytes] of Object.entries(languages)) {
           stats[language] = (stats[language] || 0) + bytes;
@@ -40,15 +48,19 @@ const InitialScreen = ({ navigation }) => {
       }
   
       if (response.ok) {
+        const publicRepos = userData.public_repos;
         setLoading(false);
-        navigation.navigate('DataDisplay', { userData, languageStats: stats });
+        navigation.navigate('DataDisplay', { userData, languageStats: stats, publicRepos, trimmedUsername });
       } else {
         throw new Error("No Matching GitHub Account Found");
-      }      
+      }    
     } catch (error) {
-      console.error(error);
       setLoading(false);
-      setError(error.message);
+      if (error.message === "iterator method is not callable") {
+        setError("API Call Limit Reached");
+      } else {
+        setError(error.message);
+      }
     }
   };    
 
